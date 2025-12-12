@@ -565,7 +565,7 @@
             <a href="#features" class="nav-link">Features</a>
             <a href="#" class="nav-link">About</a>
             <a href="/login" class="btn btn-ghost">Login</a>
-            <a href="/register" class="btn btn-primary">Start Now</a>
+            <a href="/login" class="btn btn-primary">Start Now</a>
         </div>
     </nav>
 
@@ -582,7 +582,7 @@
             </p>
 
             <div class="cta-buttons">
-                <a href="/register" class="btn btn-primary">Initialize System</a>
+                <a href="/login" class="btn btn-primary">Initialize System</a>
                 <a href="#features" class="btn btn-ghost">Explore Tech</a>
             </div>
 
