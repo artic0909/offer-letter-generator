@@ -1,4 +1,5 @@
 <x-layouts.app :title="__('Dashboard')">
+    <link rel="icon" type="image/png" href="{{ asset('fav.png') }}">
     <style>
         .dark-table-container {
             width: 100%;

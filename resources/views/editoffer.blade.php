@@ -1,5 +1,5 @@
 <x-layouts.app :title="__('Edit Offer Letter')">
-
+    <link rel="icon" type="image/png" href="{{ asset('fav.png') }}">
     <style>
         .page-title {
             font-size: 28px;

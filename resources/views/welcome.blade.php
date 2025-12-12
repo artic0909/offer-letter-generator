@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Offer Letter Generator</title>
+    <link rel="icon" type="image/png" href="{{ asset('fav.png') }}">
+
+    <title>OFFERGEN AI | Quantum Speed | SSPL</title>
+
     <style>
         * {
             margin: 0;
@@ -25,7 +29,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: 
+            background:
                 linear-gradient(0deg, transparent 24%, rgba(0, 255, 255, 0.05) 25%, rgba(0, 255, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 255, 255, 0.05) 75%, rgba(0, 255, 255, 0.05) 76%, transparent 77%, transparent),
                 linear-gradient(90deg, transparent 24%, rgba(0, 255, 255, 0.05) 25%, rgba(0, 255, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 255, 255, 0.05) 75%, rgba(0, 255, 255, 0.05) 76%, transparent 77%, transparent);
             background-size: 50px 50px;
@@ -37,6 +41,7 @@
             0% {
                 transform: perspective(500px) rotateX(60deg) translateY(0);
             }
+
             100% {
                 transform: perspective(500px) rotateX(60deg) translateY(50px);
             }
@@ -68,10 +73,13 @@
         }
 
         @keyframes pulse {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: scale(1);
                 opacity: 0.5;
             }
+
             50% {
                 transform: scale(1.2);
                 opacity: 0.8;
@@ -85,13 +93,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: repeating-linear-gradient(
-                0deg,
-                rgba(0, 0, 0, 0.15),
-                rgba(0, 0, 0, 0.15) 1px,
-                transparent 1px,
-                transparent 2px
-            );
+            background: repeating-linear-gradient(0deg,
+                    rgba(0, 0, 0, 0.15),
+                    rgba(0, 0, 0, 0.15) 1px,
+                    transparent 1px,
+                    transparent 2px);
             pointer-events: none;
             z-index: 100;
             animation: scanline 10s linear infinite;
@@ -101,6 +107,7 @@
             0% {
                 transform: translateY(0);
             }
+
             100% {
                 transform: translateY(10px);
             }
@@ -128,7 +135,7 @@
             letter-spacing: 3px;
             text-transform: uppercase;
             color: #00ffff;
-            text-shadow: 
+            text-shadow:
                 0 0 10px #00ffff,
                 0 0 20px #00ffff,
                 0 0 30px #00ffff;
@@ -136,14 +143,18 @@
         }
 
         @keyframes glitch {
-            0%, 90%, 100% {
-                text-shadow: 
+
+            0%,
+            90%,
+            100% {
+                text-shadow:
                     0 0 10px #00ffff,
                     0 0 20px #00ffff,
                     0 0 30px #00ffff;
             }
+
             95% {
-                text-shadow: 
+                text-shadow:
                     -2px 0 10px #ff00ff,
                     2px 0 20px #00ffff,
                     0 0 30px #00ff00;
@@ -219,7 +230,7 @@
             background: #00ffff;
             color: #000;
             border: 2px solid #00ffff;
-            box-shadow: 
+            box-shadow:
                 0 0 20px rgba(0, 255, 255, 0.5),
                 inset 0 0 20px rgba(0, 255, 255, 0.2);
         }
@@ -227,7 +238,7 @@
         .btn-primary:hover {
             background: #000;
             color: #00ffff;
-            box-shadow: 
+            box-shadow:
                 0 0 30px rgba(0, 255, 255, 0.8),
                 inset 0 0 20px rgba(0, 255, 255, 0.3);
         }
@@ -276,7 +287,7 @@
             text-transform: uppercase;
             letter-spacing: 5px;
             color: #fff;
-            text-shadow: 
+            text-shadow:
                 0 0 10px #00ffff,
                 0 0 20px #00ffff,
                 0 0 40px #00ffff,
@@ -286,14 +297,15 @@
 
         @keyframes titleGlow {
             0% {
-                text-shadow: 
+                text-shadow:
                     0 0 10px #00ffff,
                     0 0 20px #00ffff,
                     0 0 40px #00ffff,
                     0 0 80px #00ffff;
             }
+
             100% {
-                text-shadow: 
+                text-shadow:
                     0 0 20px #00ffff,
                     0 0 40px #00ffff,
                     0 0 60px #00ffff,
@@ -316,9 +328,11 @@
             0% {
                 background-position: 0% 50%;
             }
+
             50% {
                 background-position: 100% 50%;
             }
+
             100% {
                 background-position: 0% 50%;
             }
@@ -341,6 +355,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -389,9 +404,12 @@
         }
 
         @keyframes borderGlow {
-            0%, 100% {
+
+            0%,
+            100% {
                 background-position: 0% 50%;
             }
+
             50% {
                 background-position: 100% 50%;
             }
@@ -403,7 +421,7 @@
 
         .stat-card:hover {
             transform: translateY(-10px) scale(1.05);
-            box-shadow: 
+            box-shadow:
                 0 0 30px rgba(0, 255, 255, 0.5),
                 0 0 60px rgba(255, 0, 255, 0.3);
         }
@@ -460,7 +478,7 @@
 
         .feature-card:hover {
             border-color: #00ffff;
-            box-shadow: 
+            box-shadow:
                 0 0 30px rgba(0, 255, 255, 0.4),
                 inset 0 0 30px rgba(0, 255, 255, 0.1);
             transform: translateY(-5px);
@@ -515,12 +533,15 @@
                 transform: translateY(100vh) translateX(0);
                 opacity: 0;
             }
+
             10% {
                 opacity: 1;
             }
+
             90% {
                 opacity: 1;
             }
+
             100% {
                 transform: translateY(-100px) translateX(100px);
                 opacity: 0;
@@ -551,6 +572,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="cyber-grid"></div>
     <div class="neon-glow-1"></div>
@@ -560,7 +582,7 @@
     <div class="particles" id="particles"></div>
 
     <nav class="nav">
-        <div class="logo">OFFERSAK</div>
+        <div class="logo">OFFERGEN AI</div>
         <div class="nav-links">
             <a href="#features" class="nav-link">Features</a>
             <a href="#" class="nav-link">About</a>
@@ -636,4 +658,5 @@
         }
     </script>
 </body>
+
 </html>
