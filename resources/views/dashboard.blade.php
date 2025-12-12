@@ -208,7 +208,7 @@
                             <td>{{ $offer->email }}</td>
                             <td>{{ $offer->phone }}</td>
                             <td>
-                                <a href="{{ route('offer-letter.view', $offer->id) }}" class="action-btn btn-view">View</a>
+                                <a href="{{ route('offer-letter.view', $offer->id) }}" target="_blank" class="action-btn btn-view">View</a>
                                 <a href="/offer-letter/edit/{{$offer->id}}" class="action-btn btn-edit">Edit</a>
                                 <span class="action-btn btn-delete" onclick="openDelete({{ $offer->id }})">Delete</span>
                             </td>
