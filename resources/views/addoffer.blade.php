@@ -245,12 +245,12 @@
 
                     <div>
                         <label class="label">Salary</label>
-                        <input type="text" name="salary" class="input-field">
+                        <input type="text" name="salary" class="input-field" value="₹ ">
                     </div>
 
                     <div>
                         <label class="label">Payment Duration</label>
-                        <input type="text" name="payment_duration" class="input-field">
+                        <input type="text" name="payment_duration" class="input-field" value="Monthly">
                     </div>
 
                     <!-- Allowances -->
@@ -264,12 +264,12 @@
 
                     <div>
                         <label class="label">Attendance Present In</label>
-                        <input type="text" name="attendence_present_in" class="input-field">
+                        <input type="text" name="attendence_present_in" class="input-field" value="Register Book">
                     </div>
 
                     <div>
                         <label class="label">Notice Period</label>
-                        <input type="text" name="notice_period" class="input-field">
+                        <input type="text" name="notice_period" class="input-field" value="30 Days">
                     </div>
                 </div>
             </div>
