@@ -213,7 +213,7 @@
                     </div>
 
                     <div>
-                        <label class="label">Adhar Number</label>
+                        <label class="label">Aadhaar Number</label>
                         <input type="text" name="adhar" class="input-field" value="{{$offer->adhar}}">
                     </div>
 
