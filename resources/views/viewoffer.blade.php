@@ -120,7 +120,7 @@
         }
 
         .footer-section {
-            margin-top: 80px;
+            margin-top: 110px;
             display: flex;
             justify-content: space-between;
         }
@@ -474,7 +474,7 @@
                     Your Sincerely,<br>
                     Managing Director
                 </div>
-                <div style="margin-top: 40px; font-weight: bold;">
+                <div style="margin-top: 140px; font-weight: bold;">
                     Sekh Arif Hossain<br>
                     {{$offer->appointed_at}}
                 </div>
@@ -485,11 +485,11 @@
                     Your Sincerely,<br>
                     Admin
                 </div>
-                <div style="margin-top: 40px; font-weight: bold;">
+                <div style="margin-top: 140px; font-weight: bold;">
                     Lipika Paul Samanta<br>
                     {{$offer->appointed_at}}
                 </div>
-                <div class="acceptance-box" style="margin-top: 30px;">
+                <div class="acceptance-box" style="margin-top: 80px;">
                     Acceptance
                 </div>
             </div>
