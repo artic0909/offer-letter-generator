@@ -539,34 +539,22 @@
         <div class="leave-policy">
             <h2>Notice Period Policy</h2>
 
-            <div class="leave-policy">
-    <h2>Notice Period Policy</h2>
 
+<h3>a. Notice Period</h3>
+<p>
+A 30-day notice period must be followed. If you do not maintain the notice period, the Company will not release your clearance, salary, or other related benefits. Any loss incurred by the Company due to failure to serve the notice period shall be borne by the employee, and the Company reserves the right to take legal action against you.
+</p>
 
-<p>This Notice Period Policy forms an integral part of the Appointment Letter and outlines the obligations and responsibilities of employees upon resignation or termination of employment.</p>
+<h3>b. Confidentiality</h3>
+<p>
+Staff must not disclose any internal or confidential information to any external party. This is a punishable offence under Company rules and regulations.
+</p>
 
-<h3>a. Notice Period Requirement</h3>
-<ul>
-    <li>Employees are required to serve a <strong>30-day notice period</strong> prior to resignation, unless otherwise approved in writing by the Company.</li>
-    <li>Failure to complete the required notice period may result in the withholding of final settlement, experience certificate, relieving letter, salary clearance, and other employment-related benefits.</li>
-    <li>Any financial or operational loss incurred by the Company due to non-compliance with the notice period requirement may be recovered from the employee, and the Company reserves the right to take appropriate legal action where necessary.</li>
-</ul>
+<h3>c. Resignation Documentation</h3>
+<p>
+At the time of resignation, all required documentation must be submitted in writing during the notice period.
+</p>
 
-<h3>b. Confidentiality and Non-Disclosure</h3>
-<ul>
-    <li>Employees must not disclose, share, or communicate any confidential, proprietary, business, technical, financial, or security-related information of the Company to any external party without prior written authorization.</li>
-    <li>Any breach of confidentiality shall be considered a serious misconduct and may result in disciplinary action, termination of employment, and/or legal proceedings as per Company policy and applicable laws.</li>
-</ul>
-
-<h3>c. Resignation Formalities</h3>
-<ul>
-    <li>Employees submitting their resignation must provide a written resignation letter to the Company.</li>
-    <li>During the notice period, employees are required to complete all handover procedures, submit any pending documentation, and transfer responsibilities as instructed by the management.</li>
-    <li>Clearance and final settlement will be processed only after successful completion of all exit formalities and approval from the concerned departments.</li>
-</ul>
-
-
-</div>
 
         </div>
     </div>
