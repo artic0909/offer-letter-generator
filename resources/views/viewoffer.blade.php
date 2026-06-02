@@ -143,38 +143,40 @@
         }
 
         .leave-policy {
-            padding: 20px;
+            padding: 15px;
             background: white;
             border-radius: 5px;
-            margin-top: 20px;
+            margin-top: 15px;
         }
 
         .leave-policy h2 {
             text-align: center;
-            margin-bottom: 20px;
-            font-size: 22px;
+            margin-bottom: 15px;
+            font-size: 20px;
         }
 
         .leave-policy p {
-            line-height: 1.6;
-            margin-bottom: 15px;
+            line-height: 1.5;
+            margin-bottom: 10px;
             text-align: justify;
+            font-size: 14px;
         }
 
         .leave-policy h3 {
-            margin-top: 20px;
-            margin-bottom: 10px;
-            font-size: 16px;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-size: 15px;
         }
 
         .leave-policy ul {
             margin-left: 20px;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
         .leave-policy li {
-            margin-bottom: 8px;
-            line-height: 1.6;
+            margin-bottom: 5px;
+            line-height: 1.5;
+            font-size: 14px;
         }
 
         .small-table th {
