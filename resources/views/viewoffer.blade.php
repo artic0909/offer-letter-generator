@@ -486,7 +486,7 @@
                     Admin
                 </div>
                 <div style="margin-top: 140px; font-weight: bold;">
-                    Lipika Paul Samanta<br>
+                    Sk Albab Hossain<br>
                     {{$offer->appointed_at}}
                 </div>
                 <div class="acceptance-box" style="margin-top: 80px;">
