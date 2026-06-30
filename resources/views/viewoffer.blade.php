@@ -576,9 +576,46 @@ At the time of resignation, all required documentation must be submitted in writ
         </div>
     </div>
 
+    <!-- PAGE 5 -->
+    <div class="page">
+        <div class="header">
+            @if($company && $company->c_logo)
+            <img src="{{ asset('storage/'.$company->c_logo) }}"
+                alt="Company Logo"
+                style="width:120px; height:auto;">
+            @else
+            <img src="https://via.placeholder.com/120x60?text=No+Logo"
+                alt="No Logo">
+            @endif
+        </div>
+
+        <div class="leave-policy">
+            <h2>Responsibilities</h2>
+
+            @php
+                $resp = $offer->responsibility;
+                if (is_string($resp)) {
+                    $respArray = json_decode($resp, true) ?: explode(',', $resp);
+                } else {
+                    $respArray = is_array($resp) ? $resp : [];
+                }
+                $respArray = array_filter(array_map('trim', $respArray));
+            @endphp
+
+            @if(count($respArray) > 0)
+            <ul style="margin-top: 20px; padding-left: 20px; line-height: 1.8;">
+                @foreach($respArray as $responsibility)
+                    <li style="margin-bottom: 10px;">{{ $responsibility }}</li>
+                @endforeach
+            </ul>
+            @else
+            <p style="margin-top: 20px;">No specific responsibilities mentioned.</p>
+            @endif
+        </div>
+    </div>
+
     <!-- print btn -->
     <button id="printBtn" class="print-button">Print</button>
-
 
     <script>
         document.getElementById('printBtn').addEventListener('click', function() {

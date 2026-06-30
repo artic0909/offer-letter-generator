@@ -124,10 +124,6 @@
                         <input type="text" name="adhar" class="w-full rounded-xl bg-zinc-950 border border-zinc-800 focus:ring-purple-500 focus:border-purple-500 text-white px-4 py-2.5 transition-colors">
                     </div>
 
-                    <div class="space-y-2 md:col-span-2">
-                        <label class="block text-sm font-medium text-zinc-300">Responsibilities (comma separated)</label>
-                        <input type="text" name="responsibility" placeholder="Eg: Manage clients, Reporting" class="w-full rounded-xl bg-zinc-950 border border-zinc-800 focus:ring-purple-500 focus:border-purple-500 text-white px-4 py-2.5 transition-colors">
-                    </div>
                 </div>
             </div>
 
@@ -165,6 +161,11 @@
                     <div class="space-y-2">
                         <label class="block text-sm font-medium text-zinc-300">Payment Duration</label>
                         <input type="text" name="payment_duration" value="Monthly" class="w-full rounded-xl bg-zinc-950 border border-zinc-800 focus:ring-purple-500 focus:border-purple-500 text-white px-4 py-2.5 transition-colors">
+                    </div>
+
+                    <div class="space-y-2 md:col-span-2">
+                        <label class="block text-sm font-medium text-zinc-300">Responsibilities (comma separated)</label>
+                        <input type="text" name="responsibility" placeholder="Eg: Manage clients, Reporting" class="w-full rounded-xl bg-zinc-950 border border-zinc-800 focus:ring-purple-500 focus:border-purple-500 text-white px-4 py-2.5 transition-colors">
                     </div>
 
                     <div class="space-y-2">
