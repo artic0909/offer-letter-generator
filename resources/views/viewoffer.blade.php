@@ -389,8 +389,8 @@
 
         <table class="small-table">
             <tr>
-                <th>*</th>
-                <th>Other Facilities</th>
+                <th>19</th>
+                <th>Job Location</th>
                 <td>{{$offer->job_location}}</td>
             </tr>
             @if($offer->travelling==0)
