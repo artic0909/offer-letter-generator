@@ -113,7 +113,7 @@ class OfferController extends Controller
             'email' => 'nullable|email',
             'adhar' => 'nullable|string',
             'position' => 'nullable|string',
-            'responsibility' => 'nullable|string',
+            'responsibility' => 'nullable|array',
 
             'joining_date' => 'nullable|date',
             'job_location' => 'nullable|string',
@@ -125,9 +125,14 @@ class OfferController extends Controller
             'notice_period' => 'nullable|string',
         ]);
 
-        // Convert comma separated responsibility to JSON
-        if (!empty($validated['responsibility'])) {
-            $validated['responsibility'] = explode(',', $validated['responsibility']);
+        // Filter empty responsibilities
+        if (!empty($validated['responsibility']) && is_array($validated['responsibility'])) {
+            $validated['responsibility'] = array_values(array_filter(array_map('trim', $validated['responsibility'])));
+            if (empty($validated['responsibility'])) {
+                $validated['responsibility'] = null;
+            }
+        } else {
+            $validated['responsibility'] = null;
         }
 
         // Allowances
@@ -178,8 +183,13 @@ class OfferController extends Controller
 
         $data = $request->all();
 
-        if (!empty($data['responsibility'])) {
-            $data['responsibility'] = explode(',', $data['responsibility']);
+        if (!empty($data['responsibility']) && is_array($data['responsibility'])) {
+            $data['responsibility'] = array_values(array_filter(array_map('trim', $data['responsibility'])));
+            if (empty($data['responsibility'])) {
+                $data['responsibility'] = null;
+            }
+        } else {
+            $data['responsibility'] = null;
         }
 
         $data['travelling'] = $request->has('travelling');

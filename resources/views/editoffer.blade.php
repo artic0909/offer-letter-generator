@@ -170,12 +170,36 @@
                         } else {
                             $respArray = is_array($resp) ? $resp : [];
                         }
-                        $respString = implode(', ', array_map('trim', $respArray));
+                        $respArray = array_values(array_filter(array_map('trim', $respArray)));
                     @endphp
 
                     <div class="space-y-2 md:col-span-2">
-                        <label class="block text-sm font-medium text-zinc-300">Responsibilities (comma separated)</label>
-                        <input type="text" name="responsibility" placeholder="Eg: Manage clients, Reporting" class="w-full rounded-xl bg-zinc-950 border border-zinc-800 focus:ring-purple-500 focus:border-purple-500 text-white px-4 py-2.5 transition-colors" value="{{ $respString }}">
+                        <label class="block text-sm font-medium text-zinc-300">Responsibilities</label>
+                        <div id="responsibilities-container" class="space-y-3">
+                            @if(count($respArray) > 0)
+                                @foreach($respArray as $index => $r)
+                                <div class="flex items-center gap-3">
+                                    <input type="text" name="responsibility[]" value="{{ $r }}" placeholder="Eg: Manage clients, Reporting" class="flex-1 rounded-xl bg-zinc-950 border border-zinc-800 focus:ring-purple-500 focus:border-purple-500 text-white px-4 py-2.5 transition-colors">
+                                    @if($index === 0)
+                                    <button type="button" class="add-responsibility-btn p-2.5 rounded-xl bg-purple-600/20 border border-purple-500/50 text-purple-400 hover:text-white hover:bg-purple-600 transition-colors">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                                    </button>
+                                    @else
+                                    <button type="button" class="remove-responsibility-btn p-2.5 rounded-xl bg-red-600/20 border border-red-500/50 text-red-400 hover:text-white hover:bg-red-600 transition-colors">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                                    </button>
+                                    @endif
+                                </div>
+                                @endforeach
+                            @else
+                                <div class="flex items-center gap-3">
+                                    <input type="text" name="responsibility[]" placeholder="Eg: Manage clients, Reporting" class="flex-1 rounded-xl bg-zinc-950 border border-zinc-800 focus:ring-purple-500 focus:border-purple-500 text-white px-4 py-2.5 transition-colors">
+                                    <button type="button" class="add-responsibility-btn p-2.5 rounded-xl bg-purple-600/20 border border-purple-500/50 text-purple-400 hover:text-white hover:bg-purple-600 transition-colors">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                                    </button>
+                                </div>
+                            @endif
+                        </div>
                     </div>
 
                     <div class="space-y-2">
@@ -247,6 +271,22 @@
                     }
                 });
             }
+
+            // Dynamic Responsibilities
+            $(document).on("click", ".add-responsibility-btn", function() {
+                let html = `
+                <div class="flex items-center gap-3 mt-3">
+                    <input type="text" name="responsibility[]" placeholder="Eg: Another responsibility" class="flex-1 rounded-xl bg-zinc-950 border border-zinc-800 focus:ring-purple-500 focus:border-purple-500 text-white px-4 py-2.5 transition-colors">
+                    <button type="button" class="remove-responsibility-btn p-2.5 rounded-xl bg-red-600/20 border border-red-500/50 text-red-400 hover:text-white hover:bg-red-600 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                    </button>
+                </div>`;
+                $("#responsibilities-container").append(html);
+            });
+
+            $(document).on("click", ".remove-responsibility-btn", function() {
+                $(this).parent().remove();
+            });
         });
     </script>
 </x-layouts.app>
