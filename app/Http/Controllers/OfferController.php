@@ -200,7 +200,7 @@ class OfferController extends Controller
 
         $offer->update($data);
 
-        return redirect()->route('dashboard')->with('success', 'Offer Letter Updated!');
+        return back()->with('success', 'Offer Letter Updated!');
     }
 
     public function deleteOfferLetter($id)
