@@ -1,305 +1,158 @@
 <x-layouts.app :title="__('Dashboard')">
     <link rel="icon" type="image/png" href="{{ asset('fav.png') }}">
-    <style>
-        .dark-table-container {
-            width: 100%;
-            background: #1f1f1f;
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
-        }
-
-        .dark-table {
-            width: 100%;
-            border-collapse: collapse;
-            color: #fff;
-        }
-
-        .dark-table th {
-            background: #2a2a2a;
-            padding: 12px;
-            text-align: left;
-            font-weight: 600;
-            border-bottom: 1px solid #3a3a3a;
-        }
-
-        .dark-table td {
-            padding: 12px;
-            border-bottom: 1px solid #333;
-        }
-
-        .dark-table tr:hover {
-            background: #2b2b2b;
-        }
-
-        .action-btn {
-            padding: 6px 10px;
-            border-radius: 5px;
-            color: #fff;
-            margin-right: 6px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-
-        .btn-view {
-            background: #2563eb;
-        }
-
-        .btn-edit {
-            background: #facc15;
-            color: #000;
-        }
-
-        .btn-download {
-            background: #16a34a;
-        }
-
-        .btn-delete {
-            background: #dc2626;
-        }
-
-        /* Modal Base */
-        .delete-modal {
-            display: none;
-            position: fixed;
-            z-index: 9999;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.65);
-            backdrop-filter: blur(3px);
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* Modal Box */
-        .delete-modal-box {
-            background: #ffffff;
-            width: 380px;
-            padding: 25px 30px;
-            border-radius: 14px;
-            text-align: center;
-            animation: slideDown 0.25s ease-out;
-            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
-        }
-
-        /* Red warning icon */
-        .delete-icon {
-            font-size: 55px;
-            margin-bottom: 10px;
-            color: #ff3b3b;
-        }
-
-        /* Title */
-        .delete-title {
-            font-size: 22px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        /* Subtitle text */
-        .delete-text {
-            font-size: 15px;
-            color: #444;
-            margin-bottom: 25px;
-        }
-
-        /* Buttons */
-        .delete-btn-group {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-        }
-
-        .btn-cancel {
-            background: #dcdcdc;
-            border: none;
-            padding: 10px 18px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: 0.2s;
-        }
-
-        .btn-cancel:hover {
-            background: #bfbfbf;
-        }
-
-        .btn-confirm {
-            background: #ff3b3b;
-            border: none;
-            padding: 10px 18px;
-            color: #fff;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: 0.2s;
-        }
-
-        .btn-confirm:hover {
-            background: #e12d2d;
-        }
-
-        /* Animation */
-        @keyframes slideDown {
-            from {
-                transform: translateY(-20px);
-                opacity: 0;
-            }
-
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        /* Floating Add Button */
-        .add-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: #28a745;
-            color: #fff;
-            padding: 14px 18px;
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
-            z-index: 2000;
-            transition: 0.2s;
-        }
-
-        .add-btn:hover {
-            background: #218838;
-        }
-    </style>
-
-    <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
-
-        <div class="relative h-full flex-1 overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700 p-4">
-            <div class="flex justify-between align-center">
-                <h2 class="bold">All Generated Offer Letters</h2>
-
-                <form action="{{ route('dashboard') }}" method="GET">
-                    <input type="text" name="search" placeholder="Search Name, Email, Phone"
-                        value="{{ $search }}" class="border rounded p-1">
-                    <button type="submit" class="btn-edit p-1 rounded">Search</button>
-                </form>
+    
+    <div class="flex h-full w-full flex-1 flex-col gap-6 pt-4 sm:pt-0">
+        
+        <!-- Header & Search -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-zinc-900/50 backdrop-blur-md border border-zinc-800/50 rounded-2xl p-6 shadow-lg shadow-black/20">
+            <div>
+                <h2 class="text-2xl font-bold tracking-tight text-white">Generated Offers</h2>
+                <p class="text-zinc-400 text-sm mt-1">Manage and track your candidate offer letters.</p>
             </div>
 
-            <div class="dark-table-container">
-                <table class="dark-table">
-                    <thead>
+            <div class="flex items-center gap-3 w-full md:w-auto">
+                <form action="{{ route('dashboard') }}" method="GET" class="relative w-full md:w-80">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <svg class="w-4 h-4 text-zinc-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                        </svg>
+                    </div>
+                    <input type="text" name="search" placeholder="Search name, email, phone..."
+                        value="{{ $search ?? '' }}" class="block w-full p-2.5 pl-10 text-sm rounded-xl bg-zinc-950 border border-zinc-800 focus:ring-purple-500 focus:border-purple-500 text-white placeholder-zinc-500 transition-colors shadow-inner">
+                    <button type="submit" class="hidden"></button>
+                </form>
+                
+                <a href="{{ route('offer-letter.add') }}" class="hidden md:flex items-center gap-2 bg-purple-600 hover:bg-purple-500 text-white font-medium rounded-xl px-4 py-2.5 transition-colors shadow-lg shadow-purple-600/20 whitespace-nowrap">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                    New Offer
+                </a>
+            </div>
+        </div>
+
+        <!-- Table Container -->
+        <div class="bg-zinc-900/50 backdrop-blur-md border border-zinc-800/50 rounded-2xl shadow-lg overflow-hidden flex-1 flex flex-col">
+            <div class="overflow-x-auto flex-1">
+                <table class="w-full text-sm text-left text-zinc-300">
+                    <thead class="text-xs text-zinc-400 uppercase bg-zinc-950/50 border-b border-zinc-800/50">
                         <tr>
-                            <th>SL</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th>Action</th>
+                            <th scope="col" class="px-6 py-4 font-medium tracking-wider">#</th>
+                            <th scope="col" class="px-6 py-4 font-medium tracking-wider">Candidate</th>
+                            <th scope="col" class="px-6 py-4 font-medium tracking-wider">Contact Info</th>
+                            <th scope="col" class="px-6 py-4 font-medium tracking-wider text-right">Actions</th>
                         </tr>
                     </thead>
-
-                    <tbody>
-                        @foreach ($offers as $key => $offer)
-                        <tr>
-                            <td>{{ $key + 1 }}</td>
-                            <td>{{ $offer->candidate_name }}</td>
-                            <td>{{ $offer->email }}</td>
-                            <td>{{ $offer->phone }}</td>
-                            <td>
-                                <a href="{{ route('offer-letter.view', $offer->id) }}" target="_blank" class="action-btn btn-view">View</a>
-                                <a href="/offer-letter/edit/{{$offer->id}}" class="action-btn btn-edit">Edit</a>
-                                <span class="action-btn btn-delete" onclick="openDelete({{ $offer->id }})">Delete</span>
+                    <tbody class="divide-y divide-zinc-800/50">
+                        @forelse ($offers as $key => $offer)
+                        <tr class="hover:bg-zinc-800/30 transition-colors group">
+                            <td class="px-6 py-4 whitespace-nowrap text-zinc-500">{{ $key + 1 }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap font-medium text-zinc-100">
+                                {{ $offer->candidate_name }}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="flex flex-col">
+                                    <span class="text-zinc-300">{{ $offer->email }}</span>
+                                    <span class="text-xs text-zinc-500">{{ $offer->phone }}</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-right">
+                                <div class="flex items-center justify-end gap-2 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity">
+                                    <a href="{{ route('offer-letter.view', $offer->id) }}" target="_blank" class="p-2 text-blue-400 hover:text-blue-300 hover:bg-blue-400/10 rounded-lg transition-colors" title="View Document">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                                    </a>
+                                    <a href="/offer-letter/edit/{{$offer->id}}" class="p-2 text-amber-400 hover:text-amber-300 hover:bg-amber-400/10 rounded-lg transition-colors" title="Edit Record">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
+                                    </a>
+                                    <button type="button" onclick="openDelete({{ $offer->id }})" class="p-2 text-red-400 hover:text-red-300 hover:bg-red-400/10 rounded-lg transition-colors" title="Delete Record">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
+                                    </button>
+                                </div>
                             </td>
                         </tr>
-                        @endforeach
+                        @empty
+                        <tr>
+                            <td colspan="4" class="px-6 py-12 text-center text-zinc-500">
+                                <div class="flex flex-col items-center justify-center">
+                                    <svg class="w-12 h-12 mb-4 text-zinc-700" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                                    <p class="text-lg font-medium text-zinc-400">No offer letters found</p>
+                                    <p class="text-sm mt-1">Generate your first offer letter to get started.</p>
+                                    <a href="{{ route('offer-letter.add') }}" class="mt-4 text-purple-400 hover:text-purple-300 transition-colors text-sm font-medium">Create Offer Letter &rarr;</a>
+                                </div>
+                            </td>
+                        </tr>
+                        @endforelse
                     </tbody>
                 </table>
-
-                {{ $offers->links('pagination::bootstrap-5') }}
             </div>
-
-            <!-- DELETE MODAL -->
-            <div id="modalDelete" class="modal delete-modal">
-                <div class="delete-modal-box">
-
-                    <div class="delete-icon">
-                        ⚠️
-                    </div>
-
-                    <h3 class="delete-title">Are you sure?</h3>
-                    <p class="delete-text">This action cannot be undone. Do you really want to delete this record?</p>
-
-                    <form id="deleteForm" method="POST" class="delete-btn-group">
-                        @csrf
-                        @method('DELETE')
-
-                        <button type="button" data-close class="btn-cancel">Cancel</button>
-                        <button type="submit" class="btn-confirm">Yes, Delete</button>
-                    </form>
-
-                </div>
+            
+            @if($offers->hasPages())
+            <div class="p-4 border-t border-zinc-800/50 bg-zinc-950/30">
+                <!-- Fallback to default pagination, ideally Tailwind styled -->
+                {{ $offers->appends(['search' => $search ?? ''])->links() }}
             </div>
-
-
+            @endif
         </div>
     </div>
 
-    <!-- Floating Add Button -->
-    <a href="{{ route('offer-letter.add') }}" class="add-btn">+ Add</a>
+    <!-- Mobile Floating Add Button -->
+    <a href="{{ route('offer-letter.add') }}" class="md:hidden fixed bottom-6 right-6 bg-purple-600 text-white p-4 rounded-full shadow-lg shadow-purple-600/30 z-50 hover:bg-purple-500 transition-transform hover:scale-105 active:scale-95 flex items-center justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    </a>
 
-
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- DELETE MODAL -->
+    <div id="modalDelete" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/60 backdrop-blur-sm transition-opacity" aria-modal="true" role="dialog">
+        <div class="bg-zinc-900 border border-zinc-800 w-full max-w-sm rounded-2xl p-6 text-center shadow-2xl transform scale-95 transition-transform" id="modalDeleteBox">
+            <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-red-500/10 mb-6">
+                <svg class="h-8 w-8 text-red-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Delete Record</h3>
+            <p class="text-sm text-zinc-400 mb-8">Are you sure you want to delete this offer letter? This action cannot be undone.</p>
+            
+            <form id="deleteForm" method="POST" class="flex gap-3 w-full">
+                @csrf
+                @method('DELETE')
+                <button type="button" data-close class="w-full flex-1 py-2.5 px-4 rounded-xl bg-zinc-800 text-white font-medium hover:bg-zinc-700 transition-colors">Cancel</button>
+                <button type="submit" class="w-full flex-1 py-2.5 px-4 rounded-xl bg-red-600 text-white font-medium hover:bg-red-500 transition-colors shadow-lg shadow-red-600/20">Delete</button>
+            </form>
+        </div>
+    </div>
 
     <script>
-        function openView(id) {
-            $.get("/offer-letter/get/" + id, function(data) {
-                let html = `
-            <p><strong>Name:</strong> ${data.candidate_name}</p>
-            <p><strong>Email:</strong> ${data.email}</p>
-            <p><strong>Phone:</strong> ${data.phone}</p>
-            <p><strong>Position:</strong> ${data.position}</p>
-        `;
-                $("#viewContent").html(html);
-                $("#modalView").show();
-            });
-        }
-
-        function openEdit(id) {
-            $("#editContent").html('<p>Loading...</p>');
-            $("#modalEdit").show();
-
-            $.get("/offer-letter/edit/" + id, function(html) {
-                $("#editContent").html(html);
-            });
-        }
-
         function openDelete(id) {
             document.getElementById("deleteForm").action = "/offer-letter/delete/" + id;
-            document.getElementById("modalDelete").style.display = "flex";
+            const modal = document.getElementById("modalDelete");
+            const box = document.getElementById("modalDeleteBox");
+            modal.style.display = "flex";
+            // trigger animation
+            setTimeout(() => {
+                box.classList.remove('scale-95');
+                box.classList.add('scale-100');
+            }, 10);
         }
 
         document.querySelectorAll("[data-close]").forEach(btn => {
-            btn.onclick = () => btn.closest(".modal").style.display = "none";
+            btn.onclick = (e) => {
+                e.preventDefault();
+                closeDelete();
+            };
         });
 
+        function closeDelete() {
+            const modal = document.getElementById("modalDelete");
+            const box = document.getElementById("modalDeleteBox");
+            box.classList.remove('scale-100');
+            box.classList.add('scale-95');
+            setTimeout(() => {
+                modal.style.display = "none";
+            }, 150);
+        }
+
         window.onclick = function(e) {
-            if (e.target.classList.contains("modal")) {
-                e.target.style.display = "none";
+            const modal = document.getElementById("modalDelete");
+            if (e.target === modal) {
+                closeDelete();
             }
         };
-
-
-        document.querySelectorAll("[data-close]").forEach(btn => {
-            btn.onclick = () => btn.closest(".modal").style.display = "none";
-        });
-        window.onclick = function(e) {
-            if (e.target.classList.contains("modal")) e.target.style.display = "none";
-        };
     </script>
-
-
 </x-layouts.app>

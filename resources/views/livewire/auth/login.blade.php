@@ -1,636 +1,162 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - OfferGen</title>
+    <title>Login - OfferGen | RCPL</title>
+    <link rel="icon" type="image/png" href="{{ asset('fav.png') }}">
+    
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600,700" rel="stylesheet" />
+    
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: 'Rajdhani', 'Orbitron', monospace, sans-serif;
-            background: #000000;
-            color: #ffffff;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            position: relative;
+            font-family: 'Instrument Sans', sans-serif;
         }
-
-        /* Cyber Grid Background */
-        .cyber-grid {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background:
-                linear-gradient(0deg, transparent 24%, rgba(0, 255, 255, 0.03) 25%, rgba(0, 255, 255, 0.03) 26%, transparent 27%, transparent 74%, rgba(0, 255, 255, 0.03) 75%, rgba(0, 255, 255, 0.03) 76%, transparent 77%, transparent),
-                linear-gradient(90deg, transparent 24%, rgba(0, 255, 255, 0.03) 25%, rgba(0, 255, 255, 0.03) 26%, transparent 27%, transparent 74%, rgba(0, 255, 255, 0.03) 75%, rgba(0, 255, 255, 0.03) 76%, transparent 77%, transparent);
-            background-size: 50px 50px;
-            z-index: 0;
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
-
-        /* Neon Glows */
-        .neon-glow {
-            position: fixed;
-            width: 600px;
-            height: 600px;
-            border-radius: 50%;
-            filter: blur(100px);
-            z-index: 0;
-            animation: pulse 4s ease-in-out infinite;
+        
+        .input-field {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.2s ease;
         }
-
-        .glow-1 {
-            background: radial-gradient(circle, rgba(0, 255, 255, 0.2) 0%, transparent 70%);
-            top: -200px;
-            right: -200px;
+        
+        .input-field:focus {
+            background: rgba(0, 0, 0, 0.4);
+            border-color: #8b5cf6; /* purple-500 */
+            box-shadow: 0 0 0 1px #8b5cf6;
         }
-
-        .glow-2 {
-            background: radial-gradient(circle, rgba(255, 0, 255, 0.2) 0%, transparent 70%);
-            bottom: -200px;
-            left: -200px;
-            animation-delay: 2s;
+        
+        .text-gradient {
+            background: linear-gradient(135deg, #a855f7 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                transform: scale(1);
-                opacity: 0.5;
-            }
-
-            50% {
-                transform: scale(1.2);
-                opacity: 0.8;
-            }
-        }
-
-        /* Scanlines */
-        .scanlines {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: repeating-linear-gradient(0deg,
-                    rgba(0, 0, 0, 0.1),
-                    rgba(0, 0, 0, 0.1) 1px,
-                    transparent 1px,
-                    transparent 2px);
-            pointer-events: none;
-            z-index: 100;
-        }
-
-        /* Particles */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .particle {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: #00ffff;
-            box-shadow: 0 0 10px #00ffff;
-            animation: float-particle 15s linear infinite;
-        }
-
-        @keyframes float-particle {
-            0% {
-                transform: translateY(100vh) translateX(0);
-                opacity: 0;
-            }
-
-            10% {
-                opacity: 1;
-            }
-
-            90% {
-                opacity: 1;
-            }
-
-            100% {
-                transform: translateY(-100px) translateX(100px);
-                opacity: 0;
-            }
-        }
-
-        .container {
-            position: relative;
-            z-index: 10;
-            width: 100%;
-            max-width: 450px;
-            padding: 2rem;
-        }
-
-        .login-box {
-            background: rgba(0, 0, 0, 0.85);
-            border: 2px solid #00ffff;
-            padding: 3rem;
-            position: relative;
-            clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 30px 100%, 0 calc(100% - 30px));
-            box-shadow:
-                0 0 40px rgba(0, 255, 255, 0.3),
-                inset 0 0 40px rgba(0, 255, 255, 0.05);
-            animation: boxFadeIn 0.6s ease-out;
-        }
-
-        @keyframes boxFadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .login-box::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, #00ffff, #ff00ff, #00ff00, #00ffff);
-            background-size: 400% 400%;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.3s;
-            animation: borderGlow 3s ease infinite;
-            clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 30px 100%, 0 calc(100% - 30px));
-        }
-
-        .login-box:hover::before {
-            opacity: 0.5;
-        }
-
-        @keyframes borderGlow {
-
-            0%,
-            100% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-        }
-
-        .corner-accent {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            border: 2px solid #00ffff;
-            box-shadow: 0 0 10px #00ffff;
-        }
-
-        .corner-tl {
-            top: -2px;
-            left: -2px;
-            border-right: none;
-            border-bottom: none;
-        }
-
-        .corner-br {
-            bottom: -2px;
-            right: -2px;
-            border-left: none;
-            border-top: none;
-        }
-
-        .logo {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .logo-text {
-            font-size: 2.5rem;
-            font-weight: 900;
-            letter-spacing: 3px;
-            color: #00ffff;
-            text-shadow:
-                0 0 10px #00ffff,
-                0 0 20px #00ffff,
-                0 0 30px #00ffff;
-            animation: glitch 5s infinite;
-        }
-
-        @keyframes glitch {
-
-            0%,
-            90%,
-            100% {
-                text-shadow:
-                    0 0 10px #00ffff,
-                    0 0 20px #00ffff,
-                    0 0 30px #00ffff;
-            }
-
-            93% {
-                text-shadow:
-                    -2px 0 10px #ff00ff,
-                    2px 0 20px #00ffff,
-                    0 0 30px #00ff00;
-                transform: skew(-2deg);
-            }
-
-            95% {
-                transform: skew(0deg);
-            }
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .header h1 {
-            font-size: 1.8rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #fff;
-            margin-bottom: 0.5rem;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-        }
-
-        .header p {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.95rem;
-            letter-spacing: 1px;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-            position: relative;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #00ffff;
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-        }
-
-        input[type="email"],
-        input[type="password"],
-        input[type="text"] {
-            width: 100%;
-            padding: 1rem;
-            background: rgba(0, 0, 0, 0.5);
-            border: 2px solid rgba(0, 255, 255, 0.3);
-            color: #fff;
-            font-size: 1rem;
-            transition: all 0.3s;
-            font-family: 'Rajdhani', monospace;
-            letter-spacing: 1px;
-        }
-
-        input[type="email"]:focus,
-        input[type="password"]:focus,
-        input[type="text"]:focus {
-            outline: none;
-            border-color: #00ffff;
-            background: rgba(0, 0, 0, 0.7);
-            box-shadow:
-                0 0 20px rgba(0, 255, 255, 0.3),
-                inset 0 0 20px rgba(0, 255, 255, 0.1);
-        }
-
-        input::placeholder {
-            color: rgba(255, 255, 255, 0.3);
-        }
-
-        .password-wrapper {
-            position: relative;
-        }
-
-        .forgot-link {
-            position: absolute;
-            top: 0;
-            right: 0;
-            color: #ff00ff;
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s;
-        }
-
-        .forgot-link:hover {
-            color: #00ffff;
-            text-shadow: 0 0 10px #00ffff;
-        }
-
-        .checkbox-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 1.5rem;
-        }
-
+        
+        /* Custom checkbox */
         input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
-            cursor: pointer;
             appearance: none;
-            border: 2px solid #00ffff;
-            background: rgba(0, 0, 0, 0.5);
-            position: relative;
-            transition: all 0.3s;
+            background-color: rgba(0, 0, 0, 0.3);
+            margin: 0;
+            font: inherit;
+            color: currentColor;
+            width: 1.15em;
+            height: 1.15em;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 0.25em;
+            display: grid;
+            place-content: center;
+            transition: all 0.2s ease;
+        }
+
+        input[type="checkbox"]::before {
+            content: "";
+            width: 0.65em;
+            height: 0.65em;
+            transform: scale(0);
+            transition: 120ms transform ease-in-out;
+            box-shadow: inset 1em 1em white;
+            background-color: white;
+            transform-origin: center;
+            clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
         }
 
         input[type="checkbox"]:checked {
-            background: #00ffff;
-            box-shadow: 0 0 10px #00ffff;
+            background-color: #8b5cf6;
+            border-color: #8b5cf6;
         }
 
-        input[type="checkbox"]:checked::after {
-            content: '✓';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #000;
-            font-size: 14px;
-            font-weight: 900;
-        }
-
-        .checkbox-label {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 0.95rem;
-            cursor: pointer;
-            user-select: none;
-        }
-
-        .btn {
-            width: 100%;
-            padding: 1rem 2rem;
-            background: #00ffff;
-            color: #000;
-            border: 2px solid #00ffff;
-            font-size: 1.1rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s;
-            box-shadow:
-                0 0 20px rgba(0, 255, 255, 0.5),
-                inset 0 0 20px rgba(0, 255, 255, 0.2);
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
-            transition: left 0.5s;
-        }
-
-        .btn:hover::before {
-            left: 100%;
-        }
-
-        .btn:hover {
-            background: #000;
-            color: #00ffff;
-            box-shadow:
-                0 0 30px rgba(0, 255, 255, 0.8),
-                inset 0 0 20px rgba(0, 255, 255, 0.3);
-            transform: translateY(-2px);
-        }
-
-        .btn:active {
-            transform: translateY(0);
-        }
-
-        .divider {
-            text-align: center;
-            margin: 2rem 0;
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-        }
-
-        .signup-link {
-            text-align: center;
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.95rem;
-            letter-spacing: 1px;
-        }
-
-        .signup-link a {
-            color: #ff00ff;
-            text-decoration: none;
-            font-weight: 700;
-            transition: all 0.3s;
-        }
-
-        .signup-link a:hover {
-            color: #00ffff;
-            text-shadow: 0 0 10px #00ffff;
-        }
-
-        .status-message {
-            padding: 1rem;
-            margin-bottom: 1.5rem;
-            background: rgba(0, 255, 0, 0.1);
-            border: 1px solid rgba(0, 255, 0, 0.3);
-            color: #00ff00;
-            text-align: center;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            animation: fadeIn 0.5s;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        .back-home {
-            position: fixed;
-            top: 2rem;
-            left: 2rem;
-            z-index: 101;
-            color: #00ffff;
-            text-decoration: none;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.9rem;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .back-home:hover {
-            text-shadow: 0 0 10px #00ffff;
-            transform: translateX(-5px);
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
-            }
-
-            .login-box {
-                padding: 2rem 1.5rem;
-            }
-
-            .logo-text {
-                font-size: 2rem;
-            }
-
-            .back-home {
-                top: 1rem;
-                left: 1rem;
-                font-size: 0.8rem;
-            }
+        input[type="checkbox"]:checked::before {
+            transform: scale(1);
         }
     </style>
 </head>
+<body class="bg-zinc-950 text-zinc-50 antialiased selection:bg-purple-500/30 selection:text-white min-h-screen flex flex-col justify-center items-center relative overflow-hidden">
 
-<body>
-    <div class="cyber-grid"></div>
-    <div class="neon-glow glow-1"></div>
-    <div class="neon-glow glow-2"></div>
-    <div class="scanlines"></div>
-    <div class="particles" id="particles"></div>
+    <!-- Background Decoration -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none -z-10">
+        <div class="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-purple-900/20 blur-[120px]"></div>
+        <div class="absolute top-[40%] -right-[10%] w-[40%] h-[50%] rounded-full bg-blue-900/20 blur-[120px]"></div>
+    </div>
 
-    <a href="/" class="back-home">
-        <span>←</span>
-        <span>Back to Home</span>
+    <!-- Back to home -->
+    <a href="/" class="absolute top-8 left-8 flex items-center gap-2 text-zinc-400 hover:text-white transition-colors text-sm font-medium">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        Back to Home
     </a>
 
-    <div class="container">
-        <div class="login-box">
-            <div class="corner-accent corner-tl"></div>
-            <div class="corner-accent corner-br"></div>
-
-            <div class="logo">
-                <div class="logo-text">OFFERGEN</div>
+    <div class="w-full max-w-md px-6 z-10">
+        <!-- Logo -->
+        <div class="flex flex-col items-center mb-8">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-blue-600 flex items-center justify-center font-bold text-white text-xl shadow-lg shadow-purple-500/20 mb-4">
+                O
             </div>
+            <h1 class="text-2xl font-bold tracking-tight text-white">Welcome back</h1>
+            <p class="text-zinc-400 text-sm mt-2 text-center">Enter your credentials to access your account</p>
+        </div>
 
-            <div class="header">
-                <h1>Access Terminal</h1>
-                <p>// Enter credentials to continue //</p>
-            </div>
-
-            <!-- Session Status Message (uncomment when integrating with Laravel) -->
-            <!-- <div class="status-message">
-                Password reset link sent!
-            </div> -->
-
-            <form method="POST" action="{{ route('login.store') }}">
-                <!-- CSRF Token (for Laravel) -->
+        <!-- Login Card -->
+        <div class="glass-card rounded-2xl p-8">
+            <form method="POST" action="{{ route('login.store') }}" class="space-y-6">
                 @csrf
-                <!-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> -->
-
-                <div class="form-group">
-                    <label for="email">Email Address</label>
+                
+                <div class="space-y-2">
+                    <label for="email" class="block text-sm font-medium text-zinc-300">Email Address</label>
                     <input
                         type="email"
                         id="email"
                         name="email"
+                        class="input-field w-full rounded-lg px-4 py-3 text-white placeholder-zinc-600 focus:outline-none"
                         placeholder="user@example.com"
                         required
                         autofocus
                         autocomplete="email">
                 </div>
 
-                <div class="form-group">
-                    <div class="password-wrapper">
-                        <label for="password">Password</label>
-                        <a href="/password/reset" class="forgot-link">Forgot?</a>
+                <div class="space-y-2">
+                    <div class="flex items-center justify-between">
+                        <label for="password" class="block text-sm font-medium text-zinc-300">Password</label>
+                        <a href="/password/reset" class="text-xs font-medium text-purple-400 hover:text-purple-300 transition-colors">Forgot password?</a>
                     </div>
                     <input
                         type="password"
                         id="password"
                         name="password"
-                        placeholder="Enter password"
+                        class="input-field w-full rounded-lg px-4 py-3 text-white placeholder-zinc-600 focus:outline-none"
+                        placeholder="••••••••"
                         required
                         autocomplete="current-password">
                 </div>
 
-                <div class="checkbox-wrapper">
-                    <input type="checkbox" id="remember" name="remember">
-                    <label for="remember" class="checkbox-label">Remember me</label>
+                <div class="flex items-center gap-3">
+                    <input type="checkbox" id="remember" name="remember" class="cursor-pointer">
+                    <label for="remember" class="block text-sm text-zinc-400 cursor-pointer select-none">Remember me for 30 days</label>
                 </div>
 
-                <button type="submit" class="btn" data-test="login-button">
-                    Initialize Login
+                <button type="submit" class="w-full py-3 px-4 rounded-lg bg-white text-zinc-950 font-medium hover:bg-zinc-200 transition-all duration-200 shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_25px_rgba(255,255,255,0.2)] flex justify-center items-center" data-test="login-button">
+                    Sign in
                 </button>
             </form>
-
-            <!-- <div class="divider">// OR //</div>
-
-            <div class="signup-link">
-                Don't have an account?
-                <a href="/register">Create One</a>
-            </div> -->
+            
+            <div class="mt-8 text-center text-sm text-zinc-500">
+                Don't have an account? <a href="/register" class="font-medium text-white hover:text-purple-400 transition-colors">Sign up</a>
+            </div>
+        </div>
+        
+        <div class="mt-8 text-center text-xs text-zinc-600">
+            &copy; {{ date('Y') }} OfferGen | RCPL. All rights reserved.
         </div>
     </div>
 
-    <script>
-        // Generate floating particles
-        const particlesContainer = document.getElementById('particles');
-        for (let i = 0; i < 30; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 15 + 's';
-            particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
-            particlesContainer.appendChild(particle);
-        }
-
-        // Add input glow effect on focus
-        const inputs = document.querySelectorAll('input[type="email"], input[type="password"]');
-        inputs.forEach(input => {
-            input.addEventListener('focus', function() {
-                this.style.boxShadow = '0 0 20px rgba(0, 255, 255, 0.5), inset 0 0 20px rgba(0, 255, 255, 0.1)';
-            });
-            input.addEventListener('blur', function() {
-                this.style.boxShadow = 'none';
-            });
-        });
-    </script>
 </body>
-
 </html>

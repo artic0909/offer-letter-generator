@@ -1,662 +1,195 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OfferGen | RCPL</title>
     <link rel="icon" type="image/png" href="{{ asset('fav.png') }}">
-
-    <title>OFFERGEN AI | Quantum Speed | SSPL</title>
-
+    
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600,700" rel="stylesheet" />
+    
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: 'Rajdhani', 'Orbitron', monospace, sans-serif;
-            background: #000000;
-            color: #ffffff;
-            overflow-x: hidden;
+            font-family: 'Instrument Sans', sans-serif;
         }
-
-        /* Cyber Grid Background */
-        .cyber-grid {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background:
-                linear-gradient(0deg, transparent 24%, rgba(0, 255, 255, 0.05) 25%, rgba(0, 255, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 255, 255, 0.05) 75%, rgba(0, 255, 255, 0.05) 76%, transparent 77%, transparent),
-                linear-gradient(90deg, transparent 24%, rgba(0, 255, 255, 0.05) 25%, rgba(0, 255, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 255, 255, 0.05) 75%, rgba(0, 255, 255, 0.05) 76%, transparent 77%, transparent);
-            background-size: 50px 50px;
-            animation: gridScroll 20s linear infinite;
-            z-index: 0;
+        
+        .glass-nav {
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
-
-        @keyframes gridScroll {
-            0% {
-                transform: perspective(500px) rotateX(60deg) translateY(0);
-            }
-
-            100% {
-                transform: perspective(500px) rotateX(60deg) translateY(50px);
-            }
-        }
-
-        /* Neon Glows */
-        .neon-glow-1 {
-            position: fixed;
-            width: 600px;
-            height: 600px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(0, 255, 255, 0.3) 0%, transparent 70%);
-            top: -300px;
-            right: -300px;
-            animation: pulse 4s ease-in-out infinite;
-            z-index: 0;
-        }
-
-        .neon-glow-2 {
-            position: fixed;
-            width: 500px;
-            height: 500px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(255, 0, 255, 0.3) 0%, transparent 70%);
-            bottom: -250px;
-            left: -250px;
-            animation: pulse 6s ease-in-out infinite reverse;
-            z-index: 0;
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                transform: scale(1);
-                opacity: 0.5;
-            }
-
-            50% {
-                transform: scale(1.2);
-                opacity: 0.8;
-            }
-        }
-
-        /* Scanlines */
-        .scanlines {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: repeating-linear-gradient(0deg,
-                    rgba(0, 0, 0, 0.15),
-                    rgba(0, 0, 0, 0.15) 1px,
-                    transparent 1px,
-                    transparent 2px);
-            pointer-events: none;
-            z-index: 100;
-            animation: scanline 10s linear infinite;
-        }
-
-        @keyframes scanline {
-            0% {
-                transform: translateY(0);
-            }
-
-            100% {
-                transform: translateY(10px);
-            }
-        }
-
-        .nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 101;
-            padding: 1.5rem 3rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(10px);
-            border-bottom: 2px solid rgba(0, 255, 255, 0.3);
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
-        }
-
-        .logo {
-            font-size: 2rem;
-            font-weight: 900;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: #00ffff;
-            text-shadow:
-                0 0 10px #00ffff,
-                0 0 20px #00ffff,
-                0 0 30px #00ffff;
-            animation: glitch 3s infinite;
-        }
-
-        @keyframes glitch {
-
-            0%,
-            90%,
-            100% {
-                text-shadow:
-                    0 0 10px #00ffff,
-                    0 0 20px #00ffff,
-                    0 0 30px #00ffff;
-            }
-
-            95% {
-                text-shadow:
-                    -2px 0 10px #ff00ff,
-                    2px 0 20px #00ffff,
-                    0 0 30px #00ff00;
-            }
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-link {
-            color: #00ffff;
-            text-decoration: none;
-            font-size: 1rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s;
-            position: relative;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #00ffff;
-            transition: width 0.3s;
-            box-shadow: 0 0 10px #00ffff;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .nav-link:hover {
-            text-shadow: 0 0 10px #00ffff;
-        }
-
-        .btn {
-            padding: 0.8rem 2rem;
-            border-radius: 0;
-            text-decoration: none;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: all 0.3s;
-            font-size: 0.9rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.5s;
-        }
-
-        .btn:hover::before {
-            left: 100%;
-        }
-
-        .btn-primary {
-            background: #00ffff;
-            color: #000;
-            border: 2px solid #00ffff;
-            box-shadow:
-                0 0 20px rgba(0, 255, 255, 0.5),
-                inset 0 0 20px rgba(0, 255, 255, 0.2);
-        }
-
-        .btn-primary:hover {
-            background: #000;
-            color: #00ffff;
-            box-shadow:
-                0 0 30px rgba(0, 255, 255, 0.8),
-                inset 0 0 20px rgba(0, 255, 255, 0.3);
-        }
-
-        .btn-ghost {
-            border: 2px solid #ff00ff;
-            color: #ff00ff;
-            background: transparent;
-            box-shadow: 0 0 20px rgba(255, 0, 255, 0.3);
-        }
-
-        .btn-ghost:hover {
-            background: #ff00ff;
-            color: #000;
-            box-shadow: 0 0 30px rgba(255, 0, 255, 0.6);
-        }
-
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            max-width: 1100px;
-        }
-
-        .glitch-wrapper {
-            position: relative;
-            display: inline-block;
-        }
-
-        h1 {
-            font-size: clamp(3rem, 10vw, 7rem);
-            font-weight: 900;
-            line-height: 1;
-            margin-bottom: 2rem;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            color: #fff;
-            text-shadow:
-                0 0 10px #00ffff,
-                0 0 20px #00ffff,
-                0 0 40px #00ffff,
-                0 0 80px #00ffff;
-            animation: titleGlow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes titleGlow {
-            0% {
-                text-shadow:
-                    0 0 10px #00ffff,
-                    0 0 20px #00ffff,
-                    0 0 40px #00ffff,
-                    0 0 80px #00ffff;
-            }
-
-            100% {
-                text-shadow:
-                    0 0 20px #00ffff,
-                    0 0 40px #00ffff,
-                    0 0 60px #00ffff,
-                    0 0 100px #00ffff,
-                    0 0 140px #00ffff;
-            }
-        }
-
-        .cyber-text {
-            display: block;
-            background: linear-gradient(45deg, #00ffff, #ff00ff, #00ff00, #00ffff);
-            background-size: 300% 300%;
+        
+        .text-gradient {
+            background: linear-gradient(135deg, #a855f7 0%, #3b82f6 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: cyberGradient 3s ease infinite;
         }
-
-        @keyframes cyberGradient {
-            0% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-
-            100% {
-                background-position: 0% 50%;
-            }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
         }
-
-        .subtitle {
-            font-size: clamp(1.1rem, 3vw, 1.5rem);
-            color: #00ffff;
-            margin-bottom: 3rem;
-            line-height: 1.6;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 600;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-            animation: fadeInUp 1s ease-out 0.3s backwards;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 5rem;
-            animation: fadeInUp 1s ease-out 0.5s backwards;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-            animation: fadeInUp 1s ease-out 0.7s backwards;
-        }
-
-        .stat-card {
-            background: rgba(0, 0, 0, 0.7);
-            border: 2px solid #00ffff;
-            padding: 2rem;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s;
-        }
-
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, #00ffff, #ff00ff, #00ff00, #00ffff);
-            background-size: 400% 400%;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.3s;
-            animation: borderGlow 3s ease infinite;
-        }
-
-        @keyframes borderGlow {
-
-            0%,
-            100% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-        }
-
-        .stat-card:hover::before {
-            opacity: 1;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-10px) scale(1.05);
-            box-shadow:
-                0 0 30px rgba(0, 255, 255, 0.5),
-                0 0 60px rgba(255, 0, 255, 0.3);
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 900;
-            color: #00ffff;
-            text-shadow: 0 0 20px #00ffff;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            font-size: 1rem;
-            color: #ff00ff;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 700;
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 5rem;
-            padding: 0 2rem;
-        }
-
-        .feature-card {
-            background: rgba(0, 0, 0, 0.8);
-            border: 2px solid rgba(0, 255, 255, 0.3);
-            padding: 2.5rem;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s;
-            clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
-        }
-
-        .feature-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.2), transparent);
-            transition: left 0.6s;
-        }
-
-        .feature-card:hover::after {
-            left: 100%;
-        }
-
-        .feature-card:hover {
-            border-color: #00ffff;
-            box-shadow:
-                0 0 30px rgba(0, 255, 255, 0.4),
-                inset 0 0 30px rgba(0, 255, 255, 0.1);
+        
+        .glass-card:hover {
             transform: translateY(-5px);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            display: block;
-            filter: drop-shadow(0 0 10px #00ffff);
-        }
-
-        .feature-title {
-            font-size: 1.5rem;
-            font-weight: 900;
-            margin-bottom: 1rem;
-            color: #00ffff;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-        }
-
-        .feature-desc {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 1rem;
-            line-height: 1.6;
-            letter-spacing: 1px;
-        }
-
-        /* Particles */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .particle {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: #00ffff;
-            box-shadow: 0 0 10px #00ffff;
-            animation: float-particle 10s linear infinite;
-        }
-
-        @keyframes float-particle {
-            0% {
-                transform: translateY(100vh) translateX(0);
-                opacity: 0;
-            }
-
-            10% {
-                opacity: 1;
-            }
-
-            90% {
-                opacity: 1;
-            }
-
-            100% {
-                transform: translateY(-100px) translateX(100px);
-                opacity: 0;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav {
-                padding: 1rem 1.5rem;
-            }
-
-            .logo {
-                font-size: 1.5rem;
-            }
-
-            .nav-link:not(.btn) {
-                display: none;
-            }
-
-            .features {
-                grid-template-columns: 1fr;
-                padding: 0 1rem;
-            }
-
-            .stat-card {
-                padding: 1.5rem;
-            }
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
         }
     </style>
 </head>
+<body class="bg-zinc-950 text-zinc-50 antialiased selection:bg-purple-500/30 selection:text-white min-h-screen flex flex-col">
 
-<body>
-    <div class="cyber-grid"></div>
-    <div class="neon-glow-1"></div>
-    <div class="neon-glow-2"></div>
-    <div class="scanlines"></div>
+    <!-- Background Decoration -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
+        <div class="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-purple-900/20 blur-[120px]"></div>
+        <div class="absolute top-[40%] -right-[10%] w-[40%] h-[50%] rounded-full bg-blue-900/20 blur-[120px]"></div>
+    </div>
 
-    <div class="particles" id="particles"></div>
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500 to-blue-600 flex items-center justify-center font-bold text-white shadow-lg shadow-purple-500/20">
+                    O
+                </div>
+                <span class="font-bold text-xl tracking-tight">OfferGen <span class="text-zinc-500">| RCPL</span></span>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-400">
+                <a href="#features" class="hover:text-white transition-colors duration-200">Features</a>
+                <a href="#how-it-works" class="hover:text-white transition-colors duration-200">How it works</a>
+                <a href="#pricing" class="hover:text-white transition-colors duration-200">Pricing</a>
+            </div>
 
-    <nav class="nav">
-        <div class="logo">OFFERGEN AI</div>
-        <div class="nav-links">
-            <a href="#features" class="nav-link">Features</a>
-            <a href="#" class="nav-link">About</a>
-            <a href="/login" class="btn btn-ghost">Login</a>
-            <a href="/login" class="btn btn-primary">Start Now</a>
+            <div class="flex items-center gap-4">
+                @auth
+                    <a href="{{ url('/dashboard') }}" class="text-sm font-medium text-zinc-300 hover:text-white transition-colors">Dashboard</a>
+                @else
+                    <a href="{{ route('login') }}" class="text-sm font-medium px-4 py-2 rounded-full bg-white text-zinc-950 hover:bg-zinc-200 transition-all duration-200 shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_25px_rgba(255,255,255,0.2)]">
+                        Get Started
+                    </a>
+                @endauth
+            </div>
         </div>
     </nav>
 
-    <section class="hero">
-        <div class="content">
-            <h1>
-                <span class="cyber-text">GENERATE</span>
-                OFFER LETTERS
-                <span class="cyber-text">IN HYPERSPACE</span>
+    <!-- Hero Section -->
+    <main class="flex-grow pt-32 pb-16 px-6 relative flex flex-col items-center justify-center min-h-[85vh]">
+        <div class="max-w-4xl mx-auto text-center space-y-8">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900/50 border border-zinc-800 text-xs font-medium text-zinc-400 mb-4 backdrop-blur-sm">
+                <span class="flex h-2 w-2 rounded-full bg-purple-500 animate-pulse"></span>
+                OfferGen | RCPL 2.0 is now live
+            </div>
+            
+            <h1 class="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white leading-[1.1]">
+                Automate your <br/>
+                <span class="text-gradient">offer letters</span> instantly.
             </h1>
-
-            <p class="subtitle">
-                // AI-POWERED // INSTANT // UNSTOPPABLE //
+            
+            <p class="text-lg sm:text-xl text-zinc-400 max-w-2xl mx-auto leading-relaxed">
+                Streamline your hiring process with our intelligent offer letter generator. 
+                Create, manage, and track professional job offers in seconds, not hours.
             </p>
-
-            <div class="cta-buttons">
-                <a href="/login" class="btn btn-primary">Initialize System</a>
-                <a href="#features" class="btn btn-ghost">Explore Tech</a>
+            
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                <a href="{{ route('login') ?? '/login' }}" class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-white text-zinc-950 font-medium hover:bg-zinc-200 transition-all duration-200 flex items-center justify-center gap-2">
+                    Start Generating Now
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </a>
+                <a href="tel:+916292237205" class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-zinc-900 border border-zinc-800 text-white font-medium hover:bg-zinc-800 transition-all duration-200 flex items-center justify-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                    View Demo
+                </a>
             </div>
 
-            <div class="stats">
-                <div class="stat-card">
-                    <span class="stat-number">0.5s</span>
-                    <span class="stat-label">Generation Time</span>
+            <!-- Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 pt-16 mt-8 border-t border-zinc-800/50">
+                <div class="flex flex-col gap-1">
+                    <span class="text-3xl font-bold text-white">99%</span>
+                    <span class="text-sm text-zinc-500 font-medium uppercase tracking-wider">Time Saved</span>
                 </div>
-                <div class="stat-card">
-                    <span class="stat-number">99.9%</span>
-                    <span class="stat-label">Accuracy Rate</span>
+                <div class="flex flex-col gap-1">
+                    <span class="text-3xl font-bold text-white">10k+</span>
+                    <span class="text-sm text-zinc-500 font-medium uppercase tracking-wider">Offers Sent</span>
                 </div>
-                <div class="stat-card">
-                    <span class="stat-number">24/7</span>
-                    <span class="stat-label">System Online</span>
+                <div class="flex flex-col gap-1">
+                    <span class="text-3xl font-bold text-white">0</span>
+                    <span class="text-sm text-zinc-500 font-medium uppercase tracking-wider">Errors Made</span>
+                </div>
+                <div class="flex flex-col gap-1">
+                    <span class="text-3xl font-bold text-white">24/7</span>
+                    <span class="text-sm text-zinc-500 font-medium uppercase tracking-wider">Availability</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Features Section -->
+    <section id="features" class="py-24 px-6 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Everything you need to hire faster</h2>
+                <p class="text-zinc-400 max-w-2xl mx-auto">Powerful features designed to optimize your HR workflow and provide a seamless experience for your new hires.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="glass-card p-8 rounded-2xl">
+                    <div class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400 mb-6 border border-purple-500/20">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-3">Smart Templates</h3>
+                    <p class="text-zinc-400 leading-relaxed text-sm">Choose from a library of attorney-approved templates or create your own custom offer letters with dynamic variables.</p>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl">
+                    <div class="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 mb-6 border border-blue-500/20">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-3">Instant Generation</h3>
+                    <p class="text-zinc-400 leading-relaxed text-sm">Generate pixel-perfect PDF offer letters instantly. No more manual formatting or copy-pasting mistakes.</p>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl">
+                    <div class="w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center text-green-400 mb-6 border border-green-500/20">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-3">Enterprise Security</h3>
+                    <p class="text-zinc-400 leading-relaxed text-sm">Your data is secured with enterprise-grade encryption. SOC2 compliant architecture ensures total peace of mind.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="features" id="features">
-        <div class="feature-card">
-            <span class="feature-icon">⚡</span>
-            <h3 class="feature-title">Quantum Speed</h3>
-            <p class="feature-desc">Process offer letters at lightspeed with our neural network algorithms</p>
+    <!-- Footer -->
+    <footer class="border-t border-zinc-800/50 bg-zinc-950 mt-auto relative z-10">
+        <div class="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-2">
+                <div class="w-6 h-6 rounded-md bg-gradient-to-br from-purple-500 to-blue-600 flex items-center justify-center font-bold text-white text-xs">
+                    O
+                </div>
+                <span class="font-bold text-zinc-300">OfferGen <span class="text-zinc-600">| RCPL</span></span>
+            </div>
+            
+            <p class="text-sm text-zinc-500">
+                &copy; {{ date('Y') }} OfferGen | RCPL. All rights reserved.
+            </p>
+            
+            <div class="flex items-center gap-4 text-sm text-zinc-500">
+                <a href="#" class="hover:text-zinc-300 transition-colors">Privacy</a>
+                <a href="#" class="hover:text-zinc-300 transition-colors">Terms</a>
+                <a href="#" class="hover:text-zinc-300 transition-colors">Contact</a>
+            </div>
         </div>
+    </footer>
 
-        <div class="feature-card">
-            <span class="feature-icon">🎮</span>
-            <h3 class="feature-title">Next-Gen UI</h3>
-            <p class="feature-desc">Cyberpunk interface designed for maximum efficiency and style</p>
-        </div>
-
-        <div class="feature-card">
-            <span class="feature-icon">🔐</span>
-            <h3 class="feature-title">Military Grade</h3>
-            <p class="feature-desc">Bank-level encryption keeps your data locked in the vault</p>
-        </div>
-    </section>
-
-    <script>
-        // Generate floating particles
-        const particlesContainer = document.getElementById('particles');
-        for (let i = 0; i < 50; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 10 + 's';
-            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
-            particlesContainer.appendChild(particle);
-        }
-    </script>
 </body>
-
 </html>
