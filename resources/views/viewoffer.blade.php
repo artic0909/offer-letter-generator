@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sumatra Offer Letter</title>
+    <title>{{$company ? $company->c_name : 'Company'}} Offer Letter</title>
     <style>
         * {
             margin: 0;
@@ -488,7 +488,7 @@
                     Admin
                 </div>
                 <div style="margin-top: 140px; font-weight: bold;">
-                    Sk Albab Hossain<br>
+                    Sayek Ali Mallick<br>
                     {{$offer->appointed_at}}
                 </div>
                 <div class="acceptance-box" style="margin-top: 80px;">
