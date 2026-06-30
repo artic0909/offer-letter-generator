@@ -471,7 +471,7 @@
             <tr>
                 <th>26</th>
                 <th>Notice periods closed</th>
-                <td>{{$offer->notice_period}} Days</td>
+                <td>{{$offer->notice_period}}</td>
             </tr>
         </table>
 
