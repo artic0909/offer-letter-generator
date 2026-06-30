@@ -465,13 +465,13 @@
 
             <tr>
                 <th>25</th>
-                <th>Attendance- Present in institute</th>
-                <td>Register Book</td>
+                <th>Attendance- Present in</th>
+                <td>{{$offer->attendance_present_in}}</td>
             </tr>
             <tr>
                 <th>26</th>
                 <th>Notice periods closed</th>
-                <td>30 Days</td>
+                <td>{{$offer->notice_period}} Days</td>
             </tr>
         </table>
 
