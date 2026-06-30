@@ -466,7 +466,7 @@
             <tr>
                 <th>25</th>
                 <th>Attendance- Present in</th>
-                <td>{{$offer->attendance_present_in}}</td>
+                <td>{{$offer->attendence_present_in}}</td>
             </tr>
             <tr>
                 <th>26</th>
