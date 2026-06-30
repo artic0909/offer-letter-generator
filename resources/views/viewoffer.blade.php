@@ -120,7 +120,7 @@
         }
 
         .footer-section {
-            margin-top: 110px;
+            margin-top: 30px;
             display: flex;
             justify-content: space-between;
         }
@@ -131,14 +131,14 @@
         }
 
         .signature-line {
-            margin-top: 60px;
+            margin-top: 10px;
             font-size: 14px;
             line-height: 1.8;
         }
 
         .acceptance-box {
             text-align: right;
-            margin-top: 20px;
+            margin-top: 10px;
             font-weight: bold;
         }
 
@@ -320,47 +320,26 @@
             </tr>
             <tr>
                 <th>14</th>
-                <th>Responsibility</th>
-                @php
-                $responsibilityData = $offer->responsibility;
-
-                // If already array → keep it
-                if (is_array($responsibilityData)) {
-                $responsibilities = $responsibilityData;
-                } else {
-                // If string → convert to array
-                $responsibilities = json_decode($responsibilityData, true) ?? [];
-                }
-                @endphp
-
-                <td style="text-transform: capitalize; text-align: left;">
-                    {{ implode(', ', $responsibilities) }}
-                </td>
-
-
-            </tr>
-            <tr>
-                <th>15</th>
                 <th>Joining Date:-</th>
                 <td>{{ $offer->joining_date ? \Carbon\Carbon::parse($offer->joining_date)->format('d-m-Y') : '' }}</td>
             </tr>
             <tr>
-                <th>16</th>
+                <th>15</th>
                 <th>Job Location:-</th>
                 <td>{{$offer->job_location}}</td>
             </tr>
             <tr>
-                <th>17</th>
+                <th>16</th>
                 <th>Working Hours for Site</th>
                 <td style="text-transform: capitalize;">{{$offer->working_hour}}</td>
             </tr>
             <tr>
-                <th>18</th>
+                <th>17</th>
                 <th>Salary -</th>
                 <td>{{$offer->salary}}</td>
             </tr>
             <tr>
-                <th>19</th>
+                <th>18</th>
                 <th>Payment Duration</th>
                 <td>{{$offer->payment_duration}}</td>
             </tr>
@@ -379,6 +358,32 @@
                 alt="No Logo">
             @endif
         </div>
+
+        @php
+            $resp = $offer->responsibility;
+            if (is_string($resp)) {
+                $respArray = json_decode($resp, true) ?: explode(',', $resp);
+            } else {
+                $respArray = is_array($resp) ? $resp : [];
+            }
+            $respArray = array_filter(array_map('trim', $respArray));
+        @endphp
+
+        @if(count($respArray) > 0)
+        <div class="title">Responsibilities</div>
+
+        <table class="small-table" style="margin-bottom: 20px;">
+            <tr>
+                <td style="text-align: left; padding: 15px;">
+                    <ul style="margin-left: 20px; line-height: 1.8;">
+                        @foreach($respArray as $responsibility)
+                            <li style="margin-bottom: 8px;">{{ $responsibility }}</li>
+                        @endforeach
+                    </ul>
+                </td>
+            </tr>
+        </table>
+        @endif
 
         <div class="title">Allowances</div>
 
@@ -476,7 +481,7 @@
                     Your Sincerely,<br>
                     Managing Director
                 </div>
-                <div style="margin-top: 140px; font-weight: bold;">
+                <div style="margin-top: 50px; font-weight: bold;">
                     Sekh Arif Hossain<br>
                     {{$offer->appointed_at}}
                 </div>
@@ -487,11 +492,11 @@
                     Your Sincerely,<br>
                     Admin
                 </div>
-                <div style="margin-top: 140px; font-weight: bold;">
+                <div style="margin-top: 50px; font-weight: bold;">
                     Sayek Ali Mallick<br>
                     {{$offer->appointed_at}}
                 </div>
-                <div class="acceptance-box" style="margin-top: 80px;">
+                <div class="acceptance-box" style="margin-top: 30px;">
                     Acceptance
                 </div>
             </div>
@@ -576,43 +581,7 @@ At the time of resignation, all required documentation must be submitted in writ
         </div>
     </div>
 
-    <!-- PAGE 5 -->
-    <div class="page">
-        <div class="header">
-            @if($company && $company->c_logo)
-            <img src="{{ asset('storage/'.$company->c_logo) }}"
-                alt="Company Logo"
-                style="width:120px; height:auto;">
-            @else
-            <img src="https://via.placeholder.com/120x60?text=No+Logo"
-                alt="No Logo">
-            @endif
-        </div>
 
-        <div class="leave-policy">
-            <h2>Responsibilities</h2>
-
-            @php
-                $resp = $offer->responsibility;
-                if (is_string($resp)) {
-                    $respArray = json_decode($resp, true) ?: explode(',', $resp);
-                } else {
-                    $respArray = is_array($resp) ? $resp : [];
-                }
-                $respArray = array_filter(array_map('trim', $respArray));
-            @endphp
-
-            @if(count($respArray) > 0)
-            <ul style="margin-top: 20px; padding-left: 20px; line-height: 1.8;">
-                @foreach($respArray as $responsibility)
-                    <li style="margin-bottom: 10px;">{{ $responsibility }}</li>
-                @endforeach
-            </ul>
-            @else
-            <p style="margin-top: 20px;">No specific responsibilities mentioned.</p>
-            @endif
-        </div>
-    </div>
 
     <!-- print btn -->
     <button id="printBtn" class="print-button">Print</button>
