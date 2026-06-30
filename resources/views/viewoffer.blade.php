@@ -538,6 +538,21 @@
             <p style="margin-top: 15px;"><strong>*If you take extra leave other than the paid leaves certain amount will be deducted from the salary.</strong></p>
         </div>
 
+    </div>
+
+    <!-- PAGE 4 -->
+    <div class="page">
+        <div class="header">
+            @if($company && $company->c_logo)
+            <img src="{{ asset('storage/'.$company->c_logo) }}"
+                alt="Company Logo"
+                style="width:120px; height:auto;">
+            @else
+            <img src="https://via.placeholder.com/120x60?text=No+Logo"
+                alt="No Logo">
+            @endif
+        </div>
+
         <div class="leave-policy">
             <h2>Notice Period Policy</h2>
 
