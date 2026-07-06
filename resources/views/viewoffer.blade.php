@@ -55,7 +55,7 @@
         }
 
         .company-name {
-            font-size: 24px;
+            font-size: 20px;
             font-weight: bold;
             color: #2b8ec4;
             letter-spacing: 2px;
@@ -63,17 +63,17 @@
 
         .date-header {
             text-align: right;
-            font-size: 14px;
+            font-size: 13px;
             margin-bottom: 10px;
             font-weight: bold;
         }
 
         .title {
             text-align: center;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: bold;
-            margin: 20px 0;
-            padding: 10px;
+            margin: 15px 0;
+            padding: 8px;
             background: #c8dce8;
             border: 1px solid #4a90c5;
         }
@@ -92,8 +92,9 @@
 
         th,
         td {
-            padding: 10px;
+            padding: 6px 8px;
             text-align: left;
+            font-size: 13px;
         }
 
         th {
@@ -132,8 +133,8 @@
 
         .signature-line {
             margin-top: 10px;
-            font-size: 14px;
-            line-height: 1.8;
+            font-size: 13px;
+            line-height: 1.6;
         }
 
         .acceptance-box {
@@ -152,20 +153,20 @@
         .leave-policy h2 {
             text-align: center;
             margin-bottom: 15px;
-            font-size: 20px;
+            font-size: 18px;
         }
 
         .leave-policy p {
             line-height: 1.5;
             margin-bottom: 10px;
             text-align: justify;
-            font-size: 14px;
+            font-size: 13px;
         }
 
         .leave-policy h3 {
             margin-top: 15px;
             margin-bottom: 5px;
-            font-size: 15px;
+            font-size: 14px;
         }
 
         .leave-policy ul {
@@ -176,7 +177,7 @@
         .leave-policy li {
             margin-bottom: 5px;
             line-height: 1.5;
-            font-size: 14px;
+            font-size: 13px;
         }
 
         .small-table th {
