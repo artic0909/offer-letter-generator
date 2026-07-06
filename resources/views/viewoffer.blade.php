@@ -115,6 +115,18 @@
             background: white;
         }
 
+        .first-page-table th,
+        .first-page-table td {
+            font-size: 14px;
+            padding: 8px;
+        }
+
+        .first-page-title {
+            font-size: 18px !important;
+            padding: 10px !important;
+            margin: 20px 0 !important;
+        }
+
         .responsibility-text {
             font-size: 12px;
             line-height: 1.5;
@@ -251,9 +263,9 @@
 
         <div class="date-header">Date: {{ $offer->date ? \Carbon\Carbon::parse($offer->date)->format('d-m-Y') : '' }}</div>
 
-        <div class="title">Offer Letter</div>
+        <div class="title first-page-title">Offer Letter</div>
 
-        <table>
+        <table class="first-page-table">
             <tr>
                 <th>1</th>
                 <th>Appointed at</th>
