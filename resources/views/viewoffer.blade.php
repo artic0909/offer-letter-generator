@@ -117,14 +117,14 @@
 
         .first-page-table th,
         .first-page-table td {
-            font-size: 14px;
-            padding: 8px;
+            font-size: 16px;
+            padding: 12px;
         }
 
         .first-page-title {
-            font-size: 18px !important;
-            padding: 10px !important;
-            margin: 20px 0 !important;
+            font-size: 22px !important;
+            padding: 12px !important;
+            margin: 25px 0 !important;
         }
 
         .responsibility-text {
