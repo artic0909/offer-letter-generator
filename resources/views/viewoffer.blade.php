@@ -290,7 +290,7 @@
             </tr>
             <tr>
                 <th>8</th>
-                <th>Candidate Name:-</th>
+                <th>Candidate Name-</th>
                 <td style="text-transform: capitalize;">{{$offer->candidate_name}}</td>
             </tr>
             <tr>
@@ -320,12 +320,12 @@
             </tr>
             <tr>
                 <th>14</th>
-                <th>Joining Date:-</th>
+                <th>Joining Date-</th>
                 <td>{{ $offer->joining_date ? \Carbon\Carbon::parse($offer->joining_date)->format('d-m-Y') : '' }}</td>
             </tr>
             <tr>
                 <th>15</th>
-                <th>Job Location:-</th>
+                <th>Job Location-</th>
                 <td>{{$offer->job_location}}</td>
             </tr>
             <tr>
