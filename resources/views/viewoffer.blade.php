@@ -29,12 +29,12 @@
 
         .page {
             width: 210mm;
-            height: 297mm;
             min-height: 297mm;
+            height: 297mm;
             max-height: 297mm;
             background: #e6f2f8;
             margin: 0 auto 20px;
-            padding: 10mm 14mm;
+            padding: 12mm 14mm;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             page-break-after: always;
             break-after: page;
@@ -55,22 +55,21 @@
         .header {
             display: flex;
             align-items: center;
-            justify-content: flex-start;
-            margin-bottom: 6px;
-            min-height: 48px;
+            margin-bottom: 8px;
+            min-height: 52px;
         }
 
         .header img {
-            max-height: 48px;
-            max-width: 140px;
+            max-height: 52px;
+            max-width: 150px;
             width: auto;
             height: auto;
             object-fit: contain;
         }
 
         .logo {
-            width: 44px;
-            height: 44px;
+            width: 48px;
+            height: 48px;
             background: #ff6b35;
             border-radius: 50%;
             display: flex;
@@ -78,33 +77,33 @@
             justify-content: center;
             font-weight: bold;
             color: white;
-            font-size: 10px;
+            font-size: 11px;
             text-align: center;
-            margin-right: 12px;
+            margin-right: 14px;
             flex-shrink: 0;
         }
 
         .company-name {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: bold;
             color: #2b8ec4;
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
         }
 
         .date-header {
             text-align: right;
-            font-size: 12px;
-            margin-bottom: 6px;
+            font-size: 13px;
+            margin-bottom: 8px;
             font-weight: bold;
             color: #111;
         }
 
         .title {
             text-align: center;
-            font-size: 14px;
+            font-size: 16px;
             font-weight: bold;
-            margin: 6px 0;
-            padding: 5px 8px;
+            margin: 10px 0 12px 0;
+            padding: 7px 10px;
             background: #c8dce8;
             border: 1px solid #4a90c5;
             color: #111;
@@ -112,15 +111,15 @@
         }
 
         .first-page-title {
-            font-size: 16px !important;
-            padding: 6px !important;
-            margin: 4px 0 8px 0 !important;
+            font-size: 19px !important;
+            padding: 7px 12px !important;
+            margin: 6px 0 10px 0 !important;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
         }
 
         table,
@@ -131,11 +130,10 @@
 
         th,
         td {
-            padding: 4px 8px;
+            padding: 6px 9px;
             text-align: left;
-            font-size: 12px;
+            font-size: 13px;
             vertical-align: middle;
-            line-height: 1.3;
         }
 
         th {
@@ -145,12 +143,12 @@
         }
 
         th:first-child {
-            width: 40px;
+            width: 45px;
             text-align: center;
         }
 
         th:nth-child(2) {
-            width: 32%;
+            width: 33%;
         }
 
         td {
@@ -160,34 +158,43 @@
 
         .first-page-table th,
         .first-page-table td {
-            font-size: 12px;
-            padding: 3.5px 8px;
-            line-height: 1.25;
+            font-size: 14px;
+            padding: 7.5px 10px;
+            line-height: 1.3;
+        }
+
+        .first-page-table th:first-child {
+            width: 45px;
+            text-align: center;
+        }
+
+        .first-page-table th:nth-child(2) {
+            width: 32%;
         }
 
         .responsibility-text {
-            font-size: 11.5px;
-            line-height: 1.35;
+            font-size: 12.5px;
+            line-height: 1.5;
         }
 
         .small-table th:first-child {
-            width: 40px;
+            width: 45px;
             text-align: center;
         }
 
         .small-table th:nth-child(2) {
-            width: 34%;
+            width: 35%;
         }
 
         .small-table th,
         .small-table td {
-            padding: 4px 8px;
-            font-size: 12px;
+            padding: 6px 9px;
+            font-size: 13px;
         }
 
         .footer-section {
             margin-top: auto;
-            padding-top: 10px;
+            padding-top: 15px;
             display: flex;
             justify-content: space-between;
         }
@@ -198,59 +205,59 @@
         }
 
         .signature-line {
-            font-size: 12px;
-            line-height: 1.4;
+            font-size: 13px;
+            line-height: 1.5;
             color: #222;
         }
 
         .acceptance-box {
             text-align: right;
-            margin-top: 12px;
+            margin-top: 20px;
             font-weight: bold;
-            font-size: 12px;
+            font-size: 13px;
         }
 
         .leave-policy {
-            padding: 12px 16px;
+            padding: 16px 20px;
             background: white;
             border-radius: 4px;
             border: 1px solid #c8dce8;
-            margin-top: 6px;
+            margin-top: 8px;
         }
 
         .leave-policy h2 {
             text-align: center;
-            margin-bottom: 10px;
-            font-size: 16px;
+            margin-bottom: 12px;
+            font-size: 18px;
             color: #1a6f9f;
             border-bottom: 1px solid #e0eef7;
             padding-bottom: 6px;
         }
 
         .leave-policy p {
-            line-height: 1.45;
-            margin-bottom: 8px;
+            line-height: 1.55;
+            margin-bottom: 10px;
             text-align: justify;
-            font-size: 12px;
+            font-size: 13px;
             color: #222;
         }
 
         .leave-policy h3 {
-            margin-top: 10px;
-            margin-bottom: 4px;
-            font-size: 12.5px;
+            margin-top: 12px;
+            margin-bottom: 5px;
+            font-size: 14px;
             color: #111;
         }
 
         .leave-policy ul {
-            margin-left: 20px;
-            margin-bottom: 8px;
+            margin-left: 22px;
+            margin-bottom: 10px;
         }
 
         .leave-policy li {
-            margin-bottom: 4px;
-            line-height: 1.4;
-            font-size: 12px;
+            margin-bottom: 5px;
+            line-height: 1.5;
+            font-size: 13px;
             color: #222;
         }
 
@@ -302,7 +309,7 @@
                 max-height: 297mm !important;
                 min-height: 297mm !important;
                 width: 210mm !important;
-                padding: 10mm 14mm !important;
+                padding: 12mm 14mm !important;
                 overflow: hidden !important;
             }
 
@@ -324,11 +331,13 @@
         <div class="header">
             @if($company && $company->c_logo)
             <img src="{{ asset('storage/'.$company->c_logo) }}"
-                alt="Company Logo">
+                alt="Company Logo"
+                style="width:120px; height:auto;">
             @else
-            <img src="https://via.placeholder.com/120x48?text=No+Logo"
+            <img src="https://via.placeholder.com/120x60?text=No+Logo"
                 alt="No Logo">
             @endif
+
         </div>
 
         <div class="date-header">Date: {{ $offer->date ? \Carbon\Carbon::parse($offer->date)->format('d-m-Y') : '' }}</div>
@@ -369,7 +378,7 @@
             <tr>
                 <th>7</th>
                 <th>Website</th>
-                <td><a href="https://{{$offer->website}}" target="_blank">{{$offer->website}}</a></td>
+                <td><a href="https://{{$offer->website}}">{{$offer->website}}</a></td>
             </tr>
             <tr>
                 <th>8</th>
@@ -434,9 +443,10 @@
         <div class="header">
             @if($company && $company->c_logo)
             <img src="{{ asset('storage/'.$company->c_logo) }}"
-                alt="Company Logo">
+                alt="Company Logo"
+                style="width:120px; height:auto;">
             @else
-            <img src="https://via.placeholder.com/120x48?text=No+Logo"
+            <img src="https://via.placeholder.com/120x60?text=No+Logo"
                 alt="No Logo">
             @endif
         </div>
@@ -454,12 +464,12 @@
         @if(count($respArray) > 0)
         <div class="title">Responsibilities</div>
 
-        <table class="small-table" style="margin-bottom: 8px;">
+        <table class="small-table" style="margin-bottom: 20px;">
             <tr>
-                <td style="text-align: left; padding: 6px 10px;">
-                    <ul style="margin-left: 18px; line-height: 1.4;">
+                <td style="text-align: left; padding: 15px;">
+                    <ul style="margin-left: 20px; line-height: 1.8;">
                         @foreach($respArray as $responsibility)
-                            <li style="margin-bottom: 2px; font-size: 11.5px;">{{ $responsibility }}</li>
+                            <li style="margin-bottom: 8px;">{{ $responsibility }}</li>
                         @endforeach
                     </ul>
                 </td>
@@ -563,7 +573,7 @@
                     Your Sincerely,<br>
                     Managing Director
                 </div>
-                <div style="margin-top: 35px; font-weight: bold; font-size: 12px;">
+                <div style="margin-top: 50px; font-weight: bold;">
                     Sekh Arif Hossain<br>
                     {{$offer->appointed_at}}
                 </div>
@@ -574,11 +584,11 @@
                     Your Sincerely,<br>
                     Admin
                 </div>
-                <div style="margin-top: 35px; font-weight: bold; font-size: 12px;">
+                <div style="margin-top: 50px; font-weight: bold;">
                     Sayek Ali Mallick<br>
                     {{$offer->appointed_at}}
                 </div>
-                <div class="acceptance-box" style="margin-top: 15px;">
+                <div class="acceptance-box" style="margin-top: 30px;">
                     Acceptance
                 </div>
             </div>
@@ -590,9 +600,10 @@
         <div class="header">
             @if($company && $company->c_logo)
             <img src="{{ asset('storage/'.$company->c_logo) }}"
-                alt="Company Logo">
+                alt="Company Logo"
+                style="width:120px; height:auto;">
             @else
-            <img src="https://via.placeholder.com/120x48?text=No+Logo"
+            <img src="https://via.placeholder.com/120x60?text=No+Logo"
                 alt="No Logo">
             @endif
         </div>
@@ -621,8 +632,9 @@
             <h3>Leave Formalities:</h3>
             <p>In case of extra leave other than the paid leaves you have to submit a form 7 days ago which is available in our office.</p>
 
-            <p style="margin-top: 10px;"><strong>*If you take extra leave other than the paid leaves certain amount will be deducted from the salary.</strong></p>
+            <p style="margin-top: 15px;"><strong>*If you take extra leave other than the paid leaves certain amount will be deducted from the salary.</strong></p>
         </div>
+
     </div>
 
     <!-- PAGE 4 -->
@@ -630,9 +642,10 @@
         <div class="header">
             @if($company && $company->c_logo)
             <img src="{{ asset('storage/'.$company->c_logo) }}"
-                alt="Company Logo">
+                alt="Company Logo"
+                style="width:120px; height:auto;">
             @else
-            <img src="https://via.placeholder.com/120x48?text=No+Logo"
+            <img src="https://via.placeholder.com/120x60?text=No+Logo"
                 alt="No Logo">
             @endif
         </div>
@@ -640,20 +653,23 @@
         <div class="leave-policy">
             <h2>Notice Period Policy</h2>
 
-            <h3>a. Notice Period</h3>
-            <p>
-                A 30-day notice period must be followed. If you do not maintain the notice period, the Company will not release your clearance, salary, or other related benefits. Any loss incurred by the Company due to failure to serve the notice period shall be borne by the employee, and the Company reserves the right to take legal action against you.
-            </p>
 
-            <h3>b. Confidentiality</h3>
-            <p>
-                Staff must not disclose any internal or confidential information to any external party. This is a punishable offence under Company rules and regulations.
-            </p>
+<h3>a. Notice Period</h3>
+<p>
+A 30-day notice period must be followed. If you do not maintain the notice period, the Company will not release your clearance, salary, or other related benefits. Any loss incurred by the Company due to failure to serve the notice period shall be borne by the employee, and the Company reserves the right to take legal action against you.
+</p>
 
-            <h3>c. Resignation Documentation</h3>
-            <p>
-                At the time of resignation, all required documentation must be submitted in writing during the notice period.
-            </p>
+<h3>b. Confidentiality</h3>
+<p>
+Staff must not disclose any internal or confidential information to any external party. This is a punishable offence under Company rules and regulations.
+</p>
+
+<h3>c. Resignation Documentation</h3>
+<p>
+At the time of resignation, all required documentation must be submitted in writing during the notice period.
+</p>
+
+
         </div>
     </div>
 
